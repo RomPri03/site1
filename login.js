@@ -1,10 +1,10 @@
-const backendUrl = 'http://192.168.65.17:4000';
+const backendUrl = 'http://192.168.65.17:4500';
 
 // Gestionnaire pour le formulaire de connexion
 document.getElementById('loginForm').addEventListener('submit', async (e) => {
 e.preventDefault();
-const email = document.getElementById('email').value.trim();
-const password = document.getElementById('password').value.trim();
+const email = document.getElementById('loginEmail').value.trim();
+const password = document.getElementById('loginPassword').value.trim();
 
 try {
 const response = await fetch(`${backendUrl}/auth/login`, {
@@ -16,8 +16,9 @@ body: JSON.stringify({ email, password })
 if (response.ok) {
 // Connexion réussie
 const data = await response.json();
-alert('Connexion réussie ! Bienvenue.');
-window.location.href = 'accueil.html'; // Redirige vers une autre page
+localStorage.setItem('userId', data.userId);
+alert('Connexion reussie ! Bienvenue.');
+window.location.href = 'acceuil.html'; // Redirige vers une autre page
 } else if (response.status === 401) {
 // Email ou mot de passe incorrect
 alert('Email ou mot de passe incorrect. Veuillez réessayer.');

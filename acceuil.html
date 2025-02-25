@@ -1,20 +1,36 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="fr">
 <head>
-    <title>Page d'accueil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
     <link rel="stylesheet" href="index.css">
 </head>
-
 <body>
-    <h1>Bienvenue sur votre page d'accueil</h1>
 
-    <p>Vous êtes maintenant connecté.</p>
-    <p> Les mots de passe </p>
+    <h1>Bienvenue sur votre gestionnaire de mots de passe</h1>
 
-    <a href="connexion.html">Se déconnecter</a>
+    <!-- 🔹 Bouton pour afficher les mots de passe -->
+    <div id="passwordSection">
+        <button id="showPasswords">Voir mes mots de passe</button>
+        <ul id="passwordList"></ul>
+    </div>
+
+    <!-- 🔹 Formulaire pour ajouter un mot de passe -->
+    <div id="addPasswordSection">
+        <h2>Ajouter un nouveau mot de passe</h2>
+        <form id="passwordForm">
+            <label for="site">Site :</label>
+            <input type="text" id="site" required>
+
+            <label for="password">Mot de passe :</label>
+            <input type="password" id="password" required>
+
+            <button type="submit">Ajouter</button>
+        </form>
+    </div>
+
+    <script src="acceuil.js"></script>
 
 </body>
-<script src="main.js"></script>
-
 </html>

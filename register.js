@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const password = document.getElementById('registerPassword').value;
 
         try {
-            const response = await fetch('http://192.168.65.17:4000/auth/register', {
+            const response = await fetch('http://192.168.65.17:4500/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
