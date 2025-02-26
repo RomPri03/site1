@@ -1,6 +1,11 @@
-// Gestionnaire pour le formulaire d'inscription
 document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    const registerForm = document.getElementById('registerForm');
+    const successPopup = document.getElementById('successPopup');
+    const closePopup = document.getElementById('closePopup');
+    const popupOverlay = document.getElementById('popupOverlay'); // Si tu utilises un overlay pour la popup
+
+    // Gestionnaire pour le formulaire d'inscription
+    registerForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const email = document.getElementById('registerEmail').value;
@@ -18,7 +23,14 @@ document.addEventListener('DOMContentLoaded', function () {
             const result = await response.text();
 
             if (response.ok) {
-                alert('Inscription réussie !');
+                // Réinitialisation des champs du formulaire
+                registerForm.reset();
+
+                // Affiche la popup de succès
+                successPopup.classList.remove('hidden');
+                if (popupOverlay) {
+                    popupOverlay.classList.remove('hidden');
+                }
             } else {
                 alert(`Erreur lors de l'inscription: ${result}`);
             }
@@ -27,34 +39,12 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Impossible de se connecter au serveur');
         }
     });
-});
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    const registerForm = document.getElementById("registerForm");
-    const successPopup = document.getElementById("successPopup");
-    const closePopup = document.getElementById("closePopup");
-    const popupOverlay = document.getElementById("popupOverlay"); // Overlay pour l'effet visuel (si utilisé)
-
-    // Gestion de l'envoi du formulaire
-    registerForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // Empêche le rechargement de la page
-
-        // Réinitialise les champs du formulaire
-        registerForm.reset();
-
-        // Affiche la popup et l'overlay
-        successPopup.classList.remove("hidden");
-        if (popupOverlay) {
-            popupOverlay.classList.remove("hidden");
-        }
-    });
 
     // Fermeture de la popup
-    closePopup.addEventListener("click", () => {
-        successPopup.classList.add("hidden");
+    closePopup.addEventListener('click', () => {
+        successPopup.classList.add('hidden');
         if (popupOverlay) {
-            popupOverlay.classList.add("hidden");
+            popupOverlay.classList.add('hidden');
         }
     });
 });
